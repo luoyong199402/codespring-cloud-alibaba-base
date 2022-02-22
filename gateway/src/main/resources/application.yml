@@ -1,0 +1,85 @@
+server:
+  port: 8888
+
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway
+  redis:
+    timeout: 10000 # 连接超时时间（毫秒）
+    # redis集群
+    cluster:
+      nodes:
+        - 101.43.40.2:6379
+        - 101.43.40.2:26379
+        - 101.43.52.190:6379
+        - 101.43.52.190:26379
+        - 162.14.116.134:6379
+        - 162.14.116.134:26379
+    password: In&2LnzeSV
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 162.14.116.134:8848  # 注册中心
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+      enabled: true
+      datasource:
+        flow:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP
+            rule-type: flow
+        degrade:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-degrade-rules
+            groupId: SENTINEL_GROUP
+            rule-type: degrade
+        system:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-system-rules
+            groupId: SENTINEL_GROUP
+            rule-type: system
+        authority:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-authority-rules
+            groupId: SENTINEL_GROUP
+            rule-type: authority
+        param-flow:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-param-flow-rules
+            groupId: SENTINEL_GROUP
+            rule-type: param-flow
+
+oauth2:
+  cloud:
+    sys:
+      parameter:
+        ignoreUrls:
+          - /gateway-oauth/oauth/token
+          - /gateway-oauth/oauth/authorize
+          - /actuator/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

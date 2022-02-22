@@ -1,0 +1,62 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 101.43.52.190:8848,101.43.40.2:8848,119.3.143.23:8848
+    sentinel:
+      transport:
+        port: 8719
+        dashboard: localhost:8080
+      enabled: true
+      datasource:
+        flow:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-flow-rules
+            groupId: SENTINEL_GROUP
+            rule-type: flow
+        degrade:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-degrade-rules
+            groupId: SENTINEL_GROUP
+            rule-type: degrade
+        system:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-system-rules
+            groupId: SENTINEL_GROUP
+            rule-type: system
+        authority:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-authority-rules
+            groupId: SENTINEL_GROUP
+            rule-type: authority
+        param-flow:
+          nacos:
+            server-addr: 162.14.116.134:8848
+            namespace: 5ae48cf6-108f-4de1-aa6b-f4369cae9e3e
+            data‐type: json
+            dataId: ${spring.application.name}-param-flow-rules
+            groupId: SENTINEL_GROUP
+            rule-type: param-flow
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

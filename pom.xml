@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>code</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>gateway</module>
+        <module>producer</module>
+        <module>consumer</module>
+        <module>admin</module>
+        <module>oauth</module>
+        <module>user</module>
+        <module>common</module>
+    </modules>
+    <name>code</name>
+    <packaging>pom</packaging>
+    <description>spring alibaba 版本说明 https://github.com/alibaba/spring-cloud-alibaba/wiki/%E7%89%88%E6%9C%AC%E8%AF%B4%E6%98%8E</description>
+    <properties>
+        <java.version>1.8</java.version>
+        <alibaba.spring-cloud-alibaba.version>2021.1</alibaba.spring-cloud-alibaba.version>
+        <spring.cloud.version>2020.0.1</spring.cloud.version>
+        <spring-boot.verson>2.4.2</spring-boot.verson>
+        <codecentric.spring-boot-admin-starter-server.version>2.4.2</codecentric.spring-boot-admin-starter-server.version>
+        <skywalking.toolkit.version>8.9.0</skywalking.toolkit.version>
+        <cn.hutoo-all>5.3.10</cn.hutoo-all>
+        <org.redisso-spring-boot-starter>3.16.8</org.redisso-spring-boot-starter>
+        <com.alibaba-fastjson>1.2.71</com.alibaba-fastjson>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.verson}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring.cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${alibaba.spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${codecentric.spring-boot-admin-starter-server.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${cn.hutoo-all}</version>
+            </dependency>
+            <!--    redisson-->
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson-spring-boot-starter</artifactId>
+                <version>${org.redisso-spring-boot-starter}</version>
+            </dependency>
+            <!-- redisson -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${com.alibaba-fastjson}</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+    <repositories>
+        <repository>
+            <id>aliyun-repos</id>
+            <name>Aliyun Repository</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/libs-milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>

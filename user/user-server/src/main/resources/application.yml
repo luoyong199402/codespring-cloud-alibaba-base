@@ -1,0 +1,41 @@
+server:
+  port: 11001
+
+spring:
+  application:
+    name: user
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 162.14.116.134:8848
+  datasource:
+    url: jdbc:mysql://119.3.143.23:3306/test1?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&useSSL=false&serverTimezone=Asia/Shanghai
+    username: test1
+    password: test1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database: MySQL
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  redis:
+    timeout: 10000 # 连接超时时间（毫秒）
+    # redis集群
+    cluster:
+      nodes:
+        - 101.43.40.2:6379
+        - 101.43.40.2:26379
+        - 101.43.52.190:6379
+        - 101.43.52.190:26379
+        - 162.14.116.134:6379
+        - 162.14.116.134:26379
+    password: In&2LnzeSV
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

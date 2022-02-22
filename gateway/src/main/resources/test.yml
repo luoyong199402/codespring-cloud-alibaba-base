@@ -1,0 +1,42 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true # 开启动态路由
+          lowerCaseServiceId: true
+      ## 路由
+      routes:
+        ## id只要唯一即可，名称任意
+        - id: producer
+          uri: lb://producer
+          ## 配置断言
+          predicates:
+            ## Path Route Predicate Factory断言，满足/gateway/producer/**这个请求路径的都会被路由到http://localhost:9024这个uri中
+            - Path=/gateway-producer/**
+          filters:
+            - StripPrefix=1
+        - id: consumer
+          uri: lb://consumer
+          ## 配置断言
+          predicates:
+            ## Path Route Predicate Factory断言，满足/gateway/producer/**这个请求路径的都会被路由到http://localhost:9024这个uri中
+            - Path=/gateway-consumer/**
+          filters:
+            - StripPrefix=1
+        - id: oauth
+          uri: lb://oauth
+          ## 配置断言
+          predicates:
+            ## Path Route Predicate Factory断言，满足/gateway/producer/**这个请求路径的都会被路由到http://localhost:9024这个uri中
+            - Path=/gateway-oauth/**
+          filters:
+            - StripPrefix=1
+        - id: user
+          uri: lb://user
+          ## 配置断言
+          predicates:
+            ## Path Route Predicate Factory断言，满足/gateway/producer/**这个请求路径的都会被路由到http://localhost:9024这个uri中
+            - Path=/gateway-user/**
+          filters:
+            - StripPrefix=1
